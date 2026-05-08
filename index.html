@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cat Treat Spelling Game</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="game-shell">
+    <section class="hero">
+      <div>
+        <p class="eyebrow">Spelling practice for cat lovers</p>
+        <h1>Feed the Cat Spelling Game</h1>
+        <p class="hero-copy">
+          Type each spelling exactly before the timer runs out. A perfect word earns
+          the cat a tasty treat!
+        </p>
+      </div>
+      <div class="cat-card" aria-live="polite">
+        <div id="cat" class="cat happy" aria-label="Happy cat">
+          <span class="ear left-ear"></span>
+          <span class="ear right-ear"></span>
+          <span class="eye left-eye"></span>
+          <span class="eye right-eye"></span>
+          <span class="nose"></span>
+          <span class="mouth"></span>
+          <span class="whisker whisker-one"></span>
+          <span class="whisker whisker-two"></span>
+          <span class="whisker whisker-three"></span>
+          <span class="whisker whisker-four"></span>
+        </div>
+        <p id="catMessage" class="cat-message">Ready for spelling treats!</p>
+      </div>
+    </section>
+
+    <section class="game-panel">
+      <div class="level-row">
+        <label for="levelSelect">Choose a level</label>
+        <select id="levelSelect"></select>
+      </div>
+
+      <div class="stats-grid" aria-label="Game progress">
+        <div>
+          <span class="stat-label">Level</span>
+          <strong id="levelName">Kitten Steps</strong>
+        </div>
+        <div>
+          <span class="stat-label">Word</span>
+          <strong><span id="wordNumber">1</span>/<span id="wordTotal">5</span></strong>
+        </div>
+        <div>
+          <span class="stat-label">Treats</span>
+          <strong id="treatScore">0</strong>
+        </div>
+        <div>
+          <span class="stat-label">Time</span>
+          <strong><span id="timer">0</span>s</strong>
+        </div>
+      </div>
+
+      <div class="word-card">
+        <span class="word-label">Spell this word</span>
+        <p id="targetWord" class="target-word">cat</p>
+        <p id="hint" class="hint">A small furry pet that says meow.</p>
+      </div>
+
+      <form id="spellingForm" class="spelling-form" autocomplete="off">
+        <label for="answerInput">Type the spelling here</label>
+        <input
+          id="answerInput"
+          name="answer"
+          type="text"
+          inputmode="text"
+          autocomplete="off"
+          autocapitalize="none"
+          spellcheck="false"
+          placeholder="Start typing..."
+          aria-describedby="feedback"
+        >
+        <button type="submit">Check word</button>
+      </form>
+
+      <p id="feedback" class="feedback" aria-live="assertive">
+        Press Start Game when you are ready.
+      </p>
+
+      <div class="actions">
+        <button id="startButton" type="button" class="primary-button">Start Game</button>
+        <button id="nextButton" type="button" class="secondary-button" disabled>Next Word</button>
+      </div>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
