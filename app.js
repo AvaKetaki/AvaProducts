@@ -69,7 +69,8 @@ const game = {
   timerId: null,
   isPlaying: false,
   roundFinished: false,
-  mistakeMade: false
+  mistakeMade: false,
+  completedAllLevels: false
 };
 
 function setupLevelOptions() {
@@ -129,6 +130,7 @@ function resetRoundState() {
 }
 
 function startRound() {
+  game.completedAllLevels = false;
   resetRoundState();
   game.isPlaying = true;
   answerInput.disabled = false;
@@ -242,9 +244,7 @@ function moveToNextWordOrLevel() {
     return;
   }
 
-  game.levelIndex = 0;
-  game.wordIndex = 0;
-  game.treats = 0;
+  game.completedAllLevels = true;
   resetRoundState();
   renderGame();
   setFeedback(`${levelCompleteMessage} You finished every level!`, "success");
@@ -256,6 +256,7 @@ function changeLevel(index) {
   game.levelIndex = index;
   game.wordIndex = 0;
   game.treats = 0;
+  game.completedAllLevels = false;
   resetRoundState();
   renderGame();
   setFeedback("Press Start Game when you are ready.");
@@ -271,7 +272,11 @@ spellingForm.addEventListener("submit", (event) => {
 answerInput.addEventListener("input", markMistakeIfNeeded);
 
 startButton.addEventListener("click", () => {
-  if (game.isPlaying || game.roundFinished) {
+  if (game.completedAllLevels) {
+    game.levelIndex = 0;
+    game.wordIndex = 0;
+    game.treats = 0;
+  } else if (game.isPlaying || game.roundFinished) {
     game.wordIndex = 0;
     game.treats = 0;
   }
